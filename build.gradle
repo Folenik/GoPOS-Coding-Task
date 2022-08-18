@@ -1,0 +1,20 @@
+buildscript {
+    apply from: 'versions.gradle'
+
+    repositories {
+        google()
+        mavenCentral()
+    }
+    dependencies {
+        classpath "com.android.tools.build:gradle:$toolVersions.android.gradlePlugin"
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$toolVersions.android.kotlinGradlePlugin"
+    }
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}
+
+task versionWrapper(type: Wrapper) {
+    gradleVersion = "${toolVersions.wrapper}"
+}
