@@ -21,6 +21,9 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
         multiDexEnabled true
+
+        buildConfigField 'String', 'SERVER_URL', '"https://demo2.gopos.pl/api/v3/27/"'
+        buildConfigField 'String', 'API_KEY', '"asd"'
     }
 
     buildTypes {
@@ -48,4 +51,25 @@ dependencies {
     implementation "androidx.appcompat:appcompat:$libVersions.appcompat"
     implementation "androidx.constraintlayout:constraintlayout:$libVersions.constraintlayout"
     implementation "com.google.android.material:material:$libVersions.material"
+
+    //Retrofit, rxJava
+    implementation "io.reactivex.rxjava3:rxjava:$libVersions.rxjava"
+    implementation "io.reactivex.rxjava3:rxandroid:$libVersions.rxjava"
+    implementation "com.squareup.retrofit2:retrofit:$libVersions.retrofit"
+    implementation "com.squareup.retrofit2:converter-gson:$libVersions.retrofit"
+    implementation "com.squareup.retrofit2:adapter-rxjava3:$libVersions.retrofit"
+    implementation "com.squareup.okhttp3:okhttp:$libVersions.okhttp"
+    implementation "com.squareup.okhttp3:logging-interceptor:$libVersions.okhttp"
+
+    //ViewModel
+    implementation "androidx.lifecycle:lifecycle-extensions:$libVersions.extlifecycle"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$libVersions.vmlifecycle"
+
+    //Databinding
+    kapt "com.android.databinding:compiler:$toolVersions.android.compiler"
+
+    //Koin
+    implementation "io.insert-koin:koin-android:$libVersions.koin"
+    testImplementation "io.insert-koin:koin-test:$libVersions.koin"
+    testImplementation "io.insert-koin:koin-test-junit4:$libVersions.koin"
 }
