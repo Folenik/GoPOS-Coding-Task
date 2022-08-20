@@ -29,5 +29,7 @@ ext {
             extlifecycle                  : '2.2.0',
             vmlifecycle                   : '2.5.1',
             koin                          : '3.2.0',
+            glide                         : '4.13.2',
+            splashscreen                  : '1.0.0'
     ]
 }

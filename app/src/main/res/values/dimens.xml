@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Fontsizes -->
+    <dimen name="textSize12">12sp</dimen>
+    <dimen name="textSize16">16sp</dimen>
+    <dimen name="textSize24">24sp</dimen>
+    <dimen name="textSize36">36sp</dimen>
+
+    <!-- Margins -->
+    <dimen name="spacing2">2dp</dimen>
+    <dimen name="spacing4">4dp</dimen>
+    <dimen name="spacing8">8dp</dimen>
+    <dimen name="spacing24">24dp</dimen>
+    <dimen name="spacing32">32dp</dimen>
+    <dimen name="spacing48">48dp</dimen>
+    <dimen name="spacing68">68dp</dimen>
+
+    <dimen name="wrap_constraint">0dp</dimen>
+</resources>

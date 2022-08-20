@@ -73,4 +73,11 @@ dependencies {
     implementation "io.insert-koin:koin-android:$libVersions.koin"
     testImplementation "io.insert-koin:koin-test:$libVersions.koin"
     testImplementation "io.insert-koin:koin-test-junit4:$libVersions.koin"
+
+    //Glide
+    implementation "com.github.bumptech.glide:glide:$libVersions.glide"
+    annotationProcessor "com.github.bumptech.glide:compiler:$libVersions.glide"
+
+    //Splashscreen
+    implementation "androidx.core:core-splashscreen:$libVersions.splashscreen"
 }
