@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="GoPOSBasicText">
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="fontFamily">@font/roboto_black</item>
+    </style>
+
+    <style name="GoPOSBasicText.H1" parent="GoPOSBasicText">
+        <item name="fontFamily">@font/roboto_regular</item>
+        <item name="android:textSize">@dimen/textSize36</item>
+    </style>
+
+    <style name="Image">
+        <item name="android:adjustViewBounds">true</item>
+        <item name="android:scaleType">centerCrop</item>
+    </style>
+</resources>
