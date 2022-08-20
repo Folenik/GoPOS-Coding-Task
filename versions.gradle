@@ -9,6 +9,7 @@ ext {
                     kotlinGradlePlugin  : '1.6.21',
                     compiler            : '3.2.0-alpha10',
                     buildTools          : '30.0.2',
+                    objectboxPlugin     : '3.2.1'
             ]
     ]
     projectVersions = [
@@ -27,6 +28,6 @@ ext {
             okhttp                        : '4.9.0',
             extlifecycle                  : '2.2.0',
             vmlifecycle                   : '2.5.1',
-            koin                          : '3.2.0'
+            koin                          : '3.2.0',
     ]
 }
