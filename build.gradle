@@ -8,6 +8,7 @@ buildscript {
     dependencies {
         classpath "com.android.tools.build:gradle:$toolVersions.android.gradlePlugin"
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$toolVersions.android.kotlinGradlePlugin"
+        classpath "io.objectbox:objectbox-gradle-plugin:$toolVersions.android.objectboxPlugin"
     }
 }
 

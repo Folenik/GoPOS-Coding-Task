@@ -1,0 +1,97 @@
+{
+  "_note1": "KEEP THIS FILE! Check it into a version control system (VCS) like git.",
+  "_note2": "ObjectBox manages crucial IDs for your object model. See docs for details.",
+  "_note3": "If you have VCS merge conflicts, you must resolve them according to ObjectBox docs.",
+  "entities": [
+    {
+      "id": "1:5399324495879912922",
+      "lastPropertyId": "14:8348223497377145452",
+      "name": "Data",
+      "properties": [
+        {
+          "id": "1:712861053202841871",
+          "name": "barcodes",
+          "type": 30
+        },
+        {
+          "id": "2:6100262550709169098",
+          "name": "category_id",
+          "type": 5
+        },
+        {
+          "id": "3:7450274679161758983",
+          "name": "color",
+          "type": 9
+        },
+        {
+          "id": "4:3981708885864323014",
+          "name": "description",
+          "type": 9
+        },
+        {
+          "id": "5:4207991825530806223",
+          "name": "id",
+          "type": 6,
+          "flags": 1
+        },
+        {
+          "id": "6:8986315420647077556",
+          "name": "item_group_id",
+          "type": 5
+        },
+        {
+          "id": "7:3209363914768621387",
+          "name": "joint_id",
+          "type": 9
+        },
+        {
+          "id": "8:9030843587492370873",
+          "name": "label",
+          "type": 9
+        },
+        {
+          "id": "9:6594490909556234467",
+          "name": "name",
+          "type": 9
+        },
+        {
+          "id": "10:410256860468230761",
+          "name": "reference_id",
+          "type": 9
+        },
+        {
+          "id": "11:2858996230771025400",
+          "name": "sku",
+          "type": 9
+        },
+        {
+          "id": "12:5812030471446531774",
+          "name": "status",
+          "type": 9
+        },
+        {
+          "id": "13:164214947245206919",
+          "name": "tax_id",
+          "type": 5
+        },
+        {
+          "id": "14:8348223497377145452",
+          "name": "updated_at",
+          "type": 9
+        }
+      ],
+      "relations": []
+    }
+  ],
+  "lastEntityId": "1:5399324495879912922",
+  "lastIndexId": "0:0",
+  "lastRelationId": "0:0",
+  "lastSequenceId": "0:0",
+  "modelVersion": 5,
+  "modelVersionParserMinimum": 5,
+  "retiredEntityUids": [],
+  "retiredIndexUids": [],
+  "retiredPropertyUids": [],
+  "retiredRelationUids": [],
+  "version": 1
+}
