@@ -1,10 +1,9 @@
 package com.mosz.goposcodingtask.viewmodel
 
-import android.nfc.tech.MifareUltralight.PAGE_SIZE
 import androidx.lifecycle.ViewModel
 import com.mosz.goposcodingtask.model.submodels.Data
 import com.mosz.goposcodingtask.repositories.ItemsRepository
-import com.mosz.goposcodingtask.utilities.CalendarUtils
+import com.mosz.goposcodingtask.utilities.Constants
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.subjects.PublishSubject
 
@@ -12,10 +11,10 @@ class ItemsViewModel(private val itemsRepository: ItemsRepository) : ViewModel()
     private val compositeDisposable = CompositeDisposable()
     val itemsSubject: PublishSubject<ItemsViewModelEvent> = PublishSubject.create()
 
-    fun getItems(endDate: String = CalendarUtils.today()) {
+    fun getItems() {
         itemsRepository.getItems(
-            startDate = CalendarUtils.daysBefore(PAGE_SIZE, endDate),
-            endDate = endDate
+            tax = Constants.INCLUDE_TAX,
+            category = Constants.INCLUDE_CATEGORY
         )
             .doOnSubscribe {
                 itemsSubject.onNext(
@@ -29,7 +28,6 @@ class ItemsViewModel(private val itemsRepository: ItemsRepository) : ViewModel()
                     ItemsViewModelEvent(
                         type = ItemsViewModelEvent.Type.DATA_LOADED,
                         items = it.data,
-                        nextEndDate = CalendarUtils.daysBefore(PAGE_SIZE + 1, endDate)
                     )
                 )
             }, {
@@ -50,7 +48,6 @@ class ItemsViewModel(private val itemsRepository: ItemsRepository) : ViewModel()
 
 data class ItemsViewModelEvent(
     val items: List<Data> = emptyList(),
-    val nextEndDate: String = CalendarUtils.today(),
     val type: Type,
     val error: Throwable = Throwable()
 ) {

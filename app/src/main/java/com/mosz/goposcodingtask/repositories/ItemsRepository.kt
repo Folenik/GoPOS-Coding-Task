@@ -8,8 +8,8 @@ import io.reactivex.rxjava3.schedulers.Schedulers
 
 class ItemsRepository(private val apiService: APIService) {
 
-    fun getItems(startDate: String, endDate: String): Single<Items> {
-        return apiService.getItems(startDate, endDate)
+    fun getItems(tax: String, category: String): Single<Items> {
+        return apiService.getItems(tax, category)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
     }
