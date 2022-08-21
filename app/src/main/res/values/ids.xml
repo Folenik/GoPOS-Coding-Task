@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <item name="item_items" type="id" />
+    <item name="item_food" type="id" />
+    <item name="item_progress" type="id" />
 </resources>
