@@ -23,8 +23,14 @@ android {
 
         multiDexEnabled true
 
-        buildConfigField 'String', 'SERVER_URL', '"https://demo2.gopos.pl/api/v3/27/"'
-        buildConfigField 'String', 'API_KEY', '"asd"'
+        buildConfigField 'String', 'SERVER_URL', '"https://demo2.gopos.pl/"'
+        buildConfigField 'String', 'API_URL', '"api/v3/27/"'
+        buildConfigField 'String', 'AUTH_URL', '"oauth/token?"'
+        buildConfigField 'String', 'SERVER_LOGIN', '"zadanie@zadanie.com"'
+        buildConfigField 'String', 'SERVER_PASSWORD', '"zadanie"'
+        buildConfigField 'String', 'SERVER_ORGANIZATION_ID', '"27"'
+        buildConfigField 'String', 'SERVER_CLIENT_ID', '"073481d0-549e-4eac-9174-27cd2432f149"'
+        buildConfigField 'String', 'SERVER_CLIENT_SECRET', '"dc6d8a5e-861b-4df8-bb6b-9889c106161d"'
     }
 
     buildTypes {

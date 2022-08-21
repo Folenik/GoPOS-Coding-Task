@@ -5,12 +5,12 @@ import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import com.mosz.goposcodingtask.BuildConfig
 import com.mosz.goposcodingtask.api.APIService
+import com.mosz.goposcodingtask.api.TokenAuthenticator
 import com.mosz.goposcodingtask.model.submodels.MyObjectBox
 import com.mosz.goposcodingtask.repositories.ItemsRepository
 import com.mosz.goposcodingtask.utilities.Constants
 import com.mosz.goposcodingtask.viewmodel.ItemsViewModel
 import okhttp3.OkHttpClient
-import okhttp3.logging.HttpLoggingInterceptor
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 import retrofit2.Retrofit
@@ -33,22 +33,12 @@ val viewModelModule = module {
 val restModule = module {
     val connectTimeout: Long = Constants.BASE_TIMEOUT
     val readTimeout: Long = Constants.BASE_TIMEOUT
-    val loggingInterceptor = HttpLoggingInterceptor().apply {
-        level = HttpLoggingInterceptor.Level.BODY
-    }
 
     fun provideHttpClient() = OkHttpClient.Builder()
         .connectTimeout(connectTimeout, TimeUnit.SECONDS)
         .readTimeout(readTimeout, TimeUnit.SECONDS)
-        .addInterceptor(loggingInterceptor)
-        .addInterceptor {
-            it.request().newBuilder()
-                //.header(API_KEY_HEADER, BuildConfig.API_KEY)
-                .build()
-                .let { request ->
-                    it.proceed(request)
-                }
-        }.build()
+        .authenticator(TokenAuthenticator())
+        .build()
 
     fun provideRetrofit(client: OkHttpClient, serverUrl: String) = Retrofit.Builder()
         .baseUrl(serverUrl)
