@@ -1,4 +1,9 @@
 <resources>
     <string name="app_name">GoPOS Coding Task</string>
     <string name="image">Item image</string>
+    <string name="item_price">"Price: "</string>
+    <string name="item_tax">"Tax: "</string>
+    <string name="item_category_food" translatable="false">Jedzenie</string>
+    <string name="item_category_drink" translatable="false">Napoje</string>
+    <string name="item_category_desserts" translatable="false">Desery</string>
 </resources>

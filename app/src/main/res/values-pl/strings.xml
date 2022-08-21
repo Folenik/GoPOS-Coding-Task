@@ -2,4 +2,6 @@
 <resources>
     <string name="app_name">GoPOS Coding Task</string>
     <string name="image">Obrazek przedmiotu</string>
+    <string name="item_price">"Cena: "</string>
+    <string name="item_tax">"Podatek: "</string>
 </resources>

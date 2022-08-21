@@ -8,8 +8,13 @@
     </style>
 
     <style name="GoPOSBasicText.H1" parent="GoPOSBasicText">
+        <item name="fontFamily">@font/roboto_bold</item>
+        <item name="android:textSize">@dimen/textSize24</item>
+    </style>
+
+    <style name="GoPOSBasicText.H2" parent="GoPOSBasicText">
         <item name="fontFamily">@font/roboto_regular</item>
-        <item name="android:textSize">@dimen/textSize36</item>
+        <item name="android:textSize">@dimen/textSize12</item>
     </style>
 
     <style name="Image">

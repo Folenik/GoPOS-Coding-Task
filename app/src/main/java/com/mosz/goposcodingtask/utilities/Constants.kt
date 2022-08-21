@@ -6,4 +6,5 @@ object Constants {
     const val INCLUDE_CATEGORY = "category"
     const val GRANT_TYPE_PASSWORD = "password"
     const val GRANT_TYPE_REFRESH = "refresh_token"
+    const val ITEM_VIEW_CACHE = 5
 }

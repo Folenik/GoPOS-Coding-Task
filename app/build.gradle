@@ -86,4 +86,10 @@ dependencies {
 
     //Splashscreen
     implementation "androidx.core:core-splashscreen:$libVersions.splashscreen"
+
+    //Recyclerview, fastadapter
+    implementation "com.mikepenz:fastadapter:$libVersions.fastadapter"
+    implementation "com.mikepenz:fastadapter-extensions-paged:$libVersions.fastadapter"
+    implementation "com.mikepenz:fastadapter-extensions-scroll:$libVersions.fastadapter"
+    implementation "androidx.recyclerview:recyclerview:$libVersions.recyclerview"
 }
