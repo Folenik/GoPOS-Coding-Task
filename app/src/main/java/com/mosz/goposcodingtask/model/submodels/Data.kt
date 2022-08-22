@@ -1,25 +1,38 @@
 package com.mosz.goposcodingtask.model.submodels
 
-import io.objectbox.annotation.Entity
-import io.objectbox.annotation.Id
+import com.google.gson.annotations.SerializedName
+import com.mosz.goposcodingtask.utilities.LinksConverter
+import com.mosz.goposcodingtask.utilities.MapToStringConverter
+import io.objectbox.annotation.*
 
-//@Entity
+@Entity
 data class Data(
-    //@Transient
-    val category: Category,
-    val category_id: Int,
-    //@Id
-    val id: Int,
-    //@Transient
-    val image_link: ImageLink?,
-    val item_group_id: Int,
-    val joint_id: String,
-    val name: String,
-    //@Transient
-    val price: Price,
-    val status: String,
-    //@Transient
-    val tax: Tax,
-    val tax_id: Int,
-    val updated_at: String
-)
+    @Id
+    var dbId: Long = 0,
+
+    @Unique(onConflict = ConflictStrategy.REPLACE)
+    @SerializedName("id")
+    var itemId: Int? = 0,
+
+    @SerializedName("name")
+    var itemName: String? = "",
+
+    @SerializedName("category")
+    @Convert(converter = MapToStringConverter::class, dbType = String::class)
+    val itemCategory: Map<String, String?>?,
+
+    @SerializedName("tax")
+    @Convert(converter = MapToStringConverter::class, dbType = String::class)
+    val itemTax: Map<String, String?>?,
+
+    @SerializedName("price")
+    val itemPriceAmount: MutableMap<String, String>? = mutableMapOf(),
+
+    @SerializedName("image_link")
+    @Convert(converter = LinksConverter::class, dbType = String::class)
+    val itemImageLink: Link?
+) {
+    data class Link(
+        @SerializedName("small") val smallLink: String?,
+    )
+}

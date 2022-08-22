@@ -1,16 +1,16 @@
 package com.mosz.goposcodingtask.di
 
-import android.content.Context
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import com.mosz.goposcodingtask.BuildConfig
 import com.mosz.goposcodingtask.api.APIService
 import com.mosz.goposcodingtask.api.TokenAuthenticator
-//import com.mosz.goposcodingtask.model.submodels.MyObjectBox
+import com.mosz.goposcodingtask.db.ObjectBox
 import com.mosz.goposcodingtask.repositories.ItemsRepository
 import com.mosz.goposcodingtask.utilities.Constants
 import com.mosz.goposcodingtask.viewmodel.ItemsViewModel
 import okhttp3.OkHttpClient
+import org.koin.android.ext.koin.androidContext
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 import retrofit2.Retrofit
@@ -54,12 +54,8 @@ val restModule = module {
     single<APIService> { get<Retrofit>().create(APIService::class.java) }
 }
 
-/*val objectBoxModule = module {
-    fun provideObjectBoxStore(context: Context) = MyObjectBox.builder()
-        .androidContext(context.applicationContext)
-        .build()
+val boxModule = module {
+    single { ObjectBox.init(androidContext()) }
+}
 
-    single { provideObjectBoxStore(get()) }
-}*/
-
-val allModules = repositoryModule + viewModelModule + restModule //+ objectBoxModule
+val allModules = repositoryModule + viewModelModule + restModule + boxModule

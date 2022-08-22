@@ -3,6 +3,7 @@ package com.mosz.goposcodingtask.item
 import android.view.View
 import androidx.core.content.ContextCompat
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.mikepenz.fastadapter.FastAdapter
 import com.mikepenz.fastadapter.items.AbstractItem
 import com.mosz.goposcodingtask.R
@@ -30,9 +31,9 @@ class FoodItem(
         override fun bindView(item: FoodItem, payloads: List<Any>) {
             binding.apply {
                 foodName.text = item.name
-                foodTax.text = itemView.context.getString(R.string.item_tax) + item.tax
+                foodTax.text = "${itemView.context.getString(R.string.item_tax)}${item.tax}"
                 foodPrice.text =
-                    itemView.context.getString(R.string.item_price) + item.price.toString() + item.currency
+                    "${itemView.context.getString(R.string.item_price)}${item.price} ${item.currency}"
 
                 when (item.category) {
                     itemView.context.getString(R.string.item_category_food) -> foodCategory.setImageDrawable(
@@ -45,11 +46,13 @@ class FoodItem(
                         ContextCompat.getDrawable(itemView.context, R.drawable.category_dessert)
                     )
                 }
+
                 if (!item.link.isNullOrEmpty()) {
                     Glide.with(itemView.context)
                         .load(item.link)
                         .placeholder(R.drawable.icon_food)
                         .error(R.drawable.icon_food)
+                        .transition(DrawableTransitionOptions.withCrossFade())
                         .override(200, 200)
                         .centerCrop()
                         .into(foodImage)

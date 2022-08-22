@@ -12,7 +12,7 @@ class ItemsViewModel(private val itemsRepository: ItemsRepository) : ViewModel()
     val itemsSubject: PublishSubject<ItemsViewModelEvent> = PublishSubject.create()
 
     fun getItems() {
-        itemsRepository.getItems(
+        itemsRepository.getItemsFromServer(
             tax = Constants.INCLUDE_TAX,
             category = Constants.INCLUDE_CATEGORY
         )
