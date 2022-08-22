@@ -21,6 +21,7 @@
         <activity android:name=".view.ItemsActivity" android:configChanges="orientation|screenSize" />
         <activity
             android:name=".view.SplashActivity"
+            android:theme="@style/Theme.GoPOSCodingTask.Starting"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

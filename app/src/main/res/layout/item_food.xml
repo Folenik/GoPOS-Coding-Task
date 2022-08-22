@@ -11,11 +11,11 @@
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="90dp"
+        android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_margin="@dimen/spacing4"
-        app:cardCornerRadius="@dimen/spacing4"
-        app:cardElevation="@dimen/spacing4">
+        android:layout_margin="@dimen/spacing8"
+        app:cardCornerRadius="@dimen/spacing8"
+        app:cardElevation="@dimen/spacing8">
 
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -24,34 +24,35 @@
             android:layout_height="match_parent">
 
             <androidx.constraintlayout.widget.Guideline
-                android:id="@+id/guideline_left_vertical"
+                android:id="@+id/guideline_bottom_horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="vertical"
-                app:layout_constraintGuide_percent="0.3" />
-
-            <ImageView
-                android:id="@+id/food_image"
-                android:layout_width="@dimen/wrap_constraint"
-                android:layout_height="@dimen/wrap_constraint"
-                android:contentDescription="@string/image"
-                android:padding="@dimen/spacing4"
-                android:src="@drawable/icon_food"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="@id/guideline_left_vertical"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                android:orientation="horizontal"
+                app:layout_constraintGuide_percent="0.8" />
 
             <TextView
                 android:id="@+id/food_name"
                 style="@style/GoPOSBasicText.H1"
                 android:layout_width="@dimen/wrap_constraint"
                 android:layout_height="wrap_content"
+                android:ellipsize="end"
                 android:maxLines="1"
                 android:text="@string/app_name"
+                android:textAlignment="center"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="@id/guideline_left_vertical"
-                app:layout_constraintTop_toTopOf="@id/food_image" />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/food_image"
+                android:layout_width="@dimen/wrap_constraint"
+                android:layout_height="@dimen/wrap_constraint"
+                android:contentDescription="@string/image"
+                android:src="@drawable/icon_food"
+                app:layout_constraintBottom_toTopOf="@id/guideline_bottom_horizontal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/food_name" />
 
             <TextView
                 android:id="@+id/food_price"
@@ -60,9 +61,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/spacing4"
                 android:text="@string/app_name"
-                app:layout_constraintEnd_toStartOf="@id/food_category"
-                app:layout_constraintStart_toStartOf="@id/guideline_left_vertical"
-                app:layout_constraintTop_toBottomOf="@id/food_name" />
+                android:textAlignment="center"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/food_image" />
 
             <TextView
                 android:id="@+id/food_tax"
@@ -70,19 +72,22 @@
                 android:layout_width="@dimen/wrap_constraint"
                 android:layout_height="wrap_content"
                 android:text="@string/app_name"
-                app:layout_constraintEnd_toStartOf="@id/food_category"
-                app:layout_constraintStart_toStartOf="@id/guideline_left_vertical"
+                android:textAlignment="center"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/food_price" />
 
             <ImageView
                 android:id="@+id/food_category"
-                android:layout_width="@dimen/spacing32"
-                android:layout_height="@dimen/spacing32"
-                android:layout_margin="4dp"
+                android:layout_width="@dimen/spacing24"
+                android:layout_height="@dimen/wrap_constraint"
+                android:layout_margin="@dimen/spacing4"
                 android:contentDescription="@string/image"
+                android:padding="@dimen/spacing4"
                 android:src="@drawable/icon_food"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent" />
+                app:layout_constraintBottom_toBottomOf="@id/food_tax"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@id/food_price" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>

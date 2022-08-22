@@ -5,7 +5,7 @@
   "entities": [
     {
       "id": "13:8917305645759038126",
-      "lastPropertyId": "17:4577706474328034083",
+      "lastPropertyId": "18:4278002542177734737",
       "name": "Data",
       "properties": [
         {
@@ -40,6 +40,11 @@
           "id": "12:901275085949149044",
           "name": "itemTax",
           "type": 9
+        },
+        {
+          "id": "18:4278002542177734737",
+          "name": "itemPriceAmount",
+          "type": 13
         }
       ],
       "relations": []
