@@ -6,4 +6,5 @@
     <string name="item_category_food" translatable="false">Jedzenie</string>
     <string name="item_category_drink" translatable="false">Napoje</string>
     <string name="item_category_desserts" translatable="false">Desery</string>
+    <string name="no_internet_message">No internet access, try again later.</string>
 </resources>

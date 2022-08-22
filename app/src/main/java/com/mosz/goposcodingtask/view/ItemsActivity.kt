@@ -3,7 +3,7 @@ package com.mosz.goposcodingtask.view
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
-import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.snackbar.Snackbar
 import com.mikepenz.fastadapter.FastAdapter
@@ -43,7 +43,7 @@ class ItemsActivity : AppCompatActivity() {
         binding.list.apply {
             setItemViewCacheSize(Constants.ITEM_VIEW_CACHE)
             adapter = fastAdapter
-            layoutManager = LinearLayoutManager(context)
+            layoutManager = GridLayoutManager(context, 2)
             adapter?.apply {
                 stateRestorationPolicy =
                     RecyclerView.Adapter.StateRestorationPolicy.PREVENT_WHEN_EMPTY
@@ -65,17 +65,25 @@ class ItemsActivity : AppCompatActivity() {
     }
 
     private fun getItemsFromDatabase() {
-        boxStore.boxFor(Data::class.java).all.forEach {
-            itemAdapter.add(
-                FoodItem(
-                    it.itemName ?: "",
-                    it.itemCategory?.get("name") ?: "",
-                    it.itemPriceAmount?.get("amount")?.toDouble() ?: 0.0,
-                    it.itemPriceAmount?.get("currency") ?: "",
-                    it.itemTax?.get("name") ?: "",
-                    it.itemImageLink?.smallLink ?: ""
+        if (boxStore.boxFor(Data::class.java).all.isEmpty()) {
+            Snackbar.make(
+                binding.root,
+                getString(R.string.no_internet_message),
+                Snackbar.LENGTH_SHORT
+            ).show()
+        } else {
+            boxStore.boxFor(Data::class.java).all.forEach {
+                itemAdapter.add(
+                    FoodItem(
+                        it.itemName ?: "",
+                        it.itemCategory?.get("name") ?: "",
+                        it.itemPriceAmount?.get("amount")?.toDouble() ?: 0.0,
+                        it.itemPriceAmount?.get("currency") ?: "",
+                        it.itemTax?.get("name") ?: "",
+                        it.itemImageLink?.smallLink ?: ""
+                    )
                 )
-            )
+            }
         }
     }
 
