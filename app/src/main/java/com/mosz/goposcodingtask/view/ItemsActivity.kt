@@ -1,13 +1,11 @@
 package com.mosz.goposcodingtask.view
 
 import android.os.Bundle
-import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.snackbar.Snackbar
-import com.google.gson.internal.LinkedTreeMap
 import com.mikepenz.fastadapter.FastAdapter
 import com.mikepenz.fastadapter.adapters.GenericItemAdapter
 import com.mikepenz.fastadapter.adapters.ItemAdapter
@@ -20,11 +18,14 @@ import com.mosz.goposcodingtask.utilities.ConnectionUtil
 import com.mosz.goposcodingtask.utilities.Constants
 import com.mosz.goposcodingtask.viewmodel.ItemsViewModel
 import com.mosz.goposcodingtask.viewmodel.ItemsViewModelEvent
+import io.objectbox.BoxStore
+import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
 class ItemsActivity : AppCompatActivity() {
     private val viewModel: ItemsViewModel by viewModel()
+    private val boxStore: BoxStore by inject()
     private lateinit var binding: ActivityItemsBinding
     private val itemAdapter = GenericItemAdapter()
     private val footerAdapter: ItemAdapter<ProgressItem> = ItemAdapter.items()
@@ -35,8 +36,7 @@ class ItemsActivity : AppCompatActivity() {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_items)
 
         setup()
-        //checkForInternetConnection()
-        testApi()
+        checkForInternetConnection()
     }
 
     private fun setup() {
@@ -60,23 +60,34 @@ class ItemsActivity : AppCompatActivity() {
     }
 
     private fun getItemsFromServer() {
-        //server
-    }
-
-    private fun getItemsFromDatabase() {
-        //database
-    }
-
-    private fun testApi() {
         viewModel.itemsSubject.subscribe(::handleEvent)
         viewModel.getItems()
     }
 
-    private fun addItems(items: List<Data>) {
-        items.forEach {
-            itemAdapter.add(FoodItem(it.name, it.category.name, it.price.amount, it.price.currency, it.tax.name, it.image_link?.default_link ?: ""))
+    private fun getItemsFromDatabase() {
+        boxStore.boxFor(Data::class.java).all.forEach {
+            itemAdapter.add(
+                FoodItem(
+                    it.itemName ?: "",
+                    it.itemCategory?.get("name") ?: "",
+                    it.itemPriceAmount?.get("amount")?.toDouble() ?: 0.0,
+                    it.itemPriceAmount?.get("currency") ?: "",
+                    it.itemTax?.get("name") ?: "",
+                    it.itemImageLink?.smallLink ?: ""
+                )
+            )
         }
     }
+
+    private fun addItemsToDatabase(items: List<Data>) {
+        for (item in items) {
+            if (!boxStore.boxFor(Data::class.java).all.contains(item)) {
+                boxStore.boxFor(Data::class.java).put(item)
+            }
+        }
+        getItemsFromDatabase()
+    }
+
 
     private fun handleEvent(event: ItemsViewModelEvent) {
         when (event.type) {
@@ -85,7 +96,7 @@ class ItemsActivity : AppCompatActivity() {
             }
             ItemsViewModelEvent.Type.DATA_LOADED -> {
                 footerAdapter.clear()
-                addItems(event.items)
+                addItemsToDatabase(event.items)
             }
             ItemsViewModelEvent.Type.ERROR -> {
                 footerAdapter.clear()
